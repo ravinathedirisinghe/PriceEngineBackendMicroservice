@@ -11,4 +11,11 @@ public class CalculationResponse {
 
     private String customerId;
 
+    @Override
+    public String toString() {
+        return "CalculationResponse{" +
+                "totalPrice=" + totalPrice +
+                ", customerId='" + customerId + '\'' +
+                '}';
+    }
 }

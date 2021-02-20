@@ -41,7 +41,7 @@ public class PriceEngineController {
             ItemResponse itemResponse = itemViewService.generateItemResponse();
             return new ResponseEntity<Object>(itemResponse, HttpStatus.ACCEPTED.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Object>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

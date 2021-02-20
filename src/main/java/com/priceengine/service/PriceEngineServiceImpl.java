@@ -43,11 +43,11 @@ public class PriceEngineServiceImpl implements PriceEngineService {
         int initialValue = 0;
 
         if (priceRequestDto == null) {
-            return null;
+            throw new Exception("Request has empty values");
         }
 
         if (priceRequestDto.getCartItems().size() <= initialValue) {
-            return null;
+            throw new Exception("cart item has empty values");
         }
 
         for (int i = 0; i < priceRequestDto.getCartItems().size(); i++) {
@@ -69,7 +69,7 @@ public class PriceEngineServiceImpl implements PriceEngineService {
                     calculationResponse = new CalculationResponse();
                     calculationResponse.setTotalPrice(penguinTotalPrice);
                 }
-                logger.info("having : {} ", "penguin");
+                logger.info("Penguin calculation response  : {} ", calculationResponse);
             }
 
             if (horseShoe.equalsIgnoreCase(priceRequestDto.getCartItems().get(i).getProductName())) {
@@ -89,7 +89,7 @@ public class PriceEngineServiceImpl implements PriceEngineService {
                     calculationResponse = new CalculationResponse();
                     calculationResponse.setTotalPrice(horseShoeTotalPrice);
                 }
-                logger.info("having : {} ", "horse shoe");
+                logger.info("Horse shoe calculation response  : {} ", calculationResponse);
             }
         }
 

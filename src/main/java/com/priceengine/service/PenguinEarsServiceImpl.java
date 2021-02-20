@@ -2,10 +2,14 @@ package com.priceengine.service;
 
 import com.priceengine.dto.response.CalculationResponse;
 import com.priceengine.entity.Penguin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PenguinEarsServiceImpl implements PenguinEarsService {
+
+    Logger logger = LoggerFactory.getLogger(PenguinEarsServiceImpl.class);
 
     @Override
     public CalculationResponse calculatePenguinPrice(Penguin penguin) throws Exception {

@@ -2,6 +2,8 @@ package com.priceengine.service;
 
 import com.priceengine.dto.response.ItemResponse;
 import com.priceengine.dto.response.ItemValues;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Service
 public class ItemViewServiceImpl implements ItemViewService {
+
+    Logger logger = LoggerFactory.getLogger(ItemViewServiceImpl.class);
 
     public ItemResponse generateItemResponse() throws Exception {
 

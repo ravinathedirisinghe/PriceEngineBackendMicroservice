@@ -2,10 +2,14 @@ package com.priceengine.service;
 
 import com.priceengine.dto.response.CalculationResponse;
 import com.priceengine.entity.HorseShoe;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HorseShoeServiceImpl implements HorseShoeService {
+
+    Logger logger = LoggerFactory.getLogger(HorseShoeServiceImpl.class);
 
     @Override
     public CalculationResponse calculateHorseShoePrice(HorseShoe horseShoe) throws Exception{
