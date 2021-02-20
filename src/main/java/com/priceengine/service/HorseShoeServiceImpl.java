@@ -12,7 +12,7 @@ public class HorseShoeServiceImpl implements HorseShoeService {
     Logger logger = LoggerFactory.getLogger(HorseShoeServiceImpl.class);
 
     @Override
-    public CalculationResponse calculateHorseShoePrice(HorseShoe horseShoe) throws Exception{
+    public CalculationResponse calculateHorseShoePrice(HorseShoe horseShoe) throws Exception {
 
         CalculationResponse calculationResponse = new CalculationResponse();
         //TODO save in the db with customer id
@@ -21,6 +21,7 @@ public class HorseShoeServiceImpl implements HorseShoeService {
         double numberOfSingleUnits = (double) horseShoe.getNumberOfSingleUnits();
 
         if (numberOfSingleUnits > Constants.CARTON_SIZE_HORSE_SHOE) {
+
             double singleItems = numberOfSingleUnits % Constants.CARTON_SIZE_HORSE_SHOE;
             Double cartonNumber = (numberOfSingleUnits - singleItems) / Constants.CARTON_SIZE_HORSE_SHOE;
 
@@ -32,7 +33,10 @@ public class HorseShoeServiceImpl implements HorseShoeService {
 
             totalPrice += Constants.UNIT_PRICE_HORSE_SHOE * singleItems * Constants.ADDITIONAL_CHARGE_PERCENTAGE;
 
+        } else {
+            totalPrice += numberOfSingleUnits * Constants.UNIT_PRICE_HORSE_SHOE * Constants.ADDITIONAL_CHARGE_PERCENTAGE;
         }
+
         calculationResponse.setTotalPrice(totalPrice);
         calculationResponse.setCustomerId(customerId);
 
