@@ -5,15 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ItemValues {
+public class PriceItems {
 
     private String productName;
 
-    private int cartonSize;
-
-    private double cartonPrice;
-
-    private double unitPrice;
-
+    private Prices priceValue;
 
 }

@@ -4,8 +4,9 @@ import com.priceengine.dto.error.CommonError;
 import com.priceengine.dto.error.ErrorConstants;
 import com.priceengine.dto.request.PriceRequestDto;
 import com.priceengine.dto.response.CalculationResponse;
-import com.priceengine.dto.response.ItemResponse;
-import com.priceengine.service.ItemViewService;
+import com.priceengine.dto.response.PriceListResponse;
+import com.priceengine.dto.response.RateResponse;
+import com.priceengine.service.RateService;
 import com.priceengine.service.PriceEngineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,7 @@ public class PriceEngineController {
     private PriceEngineService priceEngineService;
 
     @Autowired
-    private ItemViewService itemViewService;
+    private RateService rateService;
 
     Logger logger = LoggerFactory.getLogger(PriceEngineController.class);
 
@@ -42,11 +43,23 @@ public class PriceEngineController {
 
     }
 
+
+    @GetMapping(value = "/price-list", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getPriceList() {
+        try {
+            PriceListResponse priceListResponse = rateService.generatePriceListResponse();
+            return new ResponseEntity<Object>(priceListResponse, HttpStatus.ACCEPTED.OK);
+        } catch (Exception ex) {
+            CommonError commonError = generateCommonError(ex);
+            return new ResponseEntity<Object>(commonError, HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping(value = "/getItemRates", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getItemRates() {
         try {
-            ItemResponse itemResponse = itemViewService.generateItemResponse();
-            return new ResponseEntity<Object>(itemResponse, HttpStatus.ACCEPTED.OK);
+            RateResponse rateResponse = rateService.generateRateResponse();
+            return new ResponseEntity<Object>(rateResponse, HttpStatus.ACCEPTED.OK);
         } catch (Exception ex) {
             CommonError commonError = generateCommonError(ex);
             return new ResponseEntity<Object>(commonError, HttpStatus.BAD_REQUEST);
@@ -61,4 +74,5 @@ public class PriceEngineController {
         logger.error("Backend Error {}", commonError);
         return commonError;
     }
+
 }

@@ -7,9 +7,9 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ItemResponse {
+public class RateResponse {
 
-    private List<ItemValues> cartItems;
+    private List<RateValues> cartItems;
 
     private String discountPercentage;
 
