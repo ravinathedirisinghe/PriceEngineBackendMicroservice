@@ -18,7 +18,7 @@ public class HorseShoeServiceImpl implements HorseShoeService {
         //TODO save in the db with customer id
         String customerId = horseShoe.getCustomerId();
         double totalPrice = 0.0;
-        double numberOfSingleUnits = (double) horseShoe.getNumberOfSingleUnits();
+        double numberOfSingleUnits = horseShoe.getNumberOfSingleUnits();
 
         if (numberOfSingleUnits % Constants.CARTON_SIZE_HORSE_SHOE == 0 && (numberOfSingleUnits / Constants.CARTON_SIZE_HORSE_SHOE) > Constants.CARTON_SIZE_HORSE_SHOE) {
             totalPrice = Constants.CARTON_PRICE_HORSE_SHOE * (numberOfSingleUnits / Constants.CARTON_SIZE_HORSE_SHOE);

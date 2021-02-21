@@ -42,10 +42,6 @@ public class PriceEngineServiceImpl implements PriceEngineService {
         CalculationResponse calculationResponse = null;
         int initialValue = 0;
 
-        if (priceRequestDto == null) {
-            throw new Exception("Request has empty values");
-        }
-
         if (priceRequestDto.getCartItems().size() <= initialValue) {
             throw new Exception("cart item has empty values");
         }
@@ -63,11 +59,13 @@ public class PriceEngineServiceImpl implements PriceEngineService {
 
                 //user can select both product in this case total price of both products will be calculated
                 if (calculationResponse != null) {
-                    Double totalForBothProducts = calculationResponse.getTotalPrice() + penguinTotalPrice;
+                    double totalForBothProducts = calculationResponse.getTotalPrice() + penguinTotalPrice;
                     calculationResponse.setTotalPrice(totalForBothProducts);
+                    calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
                 } else {
                     calculationResponse = new CalculationResponse();
                     calculationResponse.setTotalPrice(penguinTotalPrice);
+                    calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
                 }
                 logger.info("Penguin calculation response  : {} ", calculationResponse);
             }
@@ -85,15 +83,16 @@ public class PriceEngineServiceImpl implements PriceEngineService {
                 if (calculationResponse != null) {
                     double totalForBothProducts = calculationResponse.getTotalPrice() + horseShoeTotalPrice;
                     calculationResponse.setTotalPrice(totalForBothProducts);
+                    calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
                 } else {
                     calculationResponse = new CalculationResponse();
                     calculationResponse.setTotalPrice(horseShoeTotalPrice);
+                    calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
                 }
                 logger.info("Horse shoe calculation response  : {} ", calculationResponse);
             }
         }
 
-        calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
         return calculationResponse;
     }
 
