@@ -39,19 +39,19 @@ public class PriceEngineServiceImpl implements PriceEngineService {
     @Override
     public CalculationResponse calculateTotalPrice(PriceRequestDto priceRequestDto) throws Exception {
 
-        String customerId = priceRequestDto.getCustomerId();
+        String customerId = priceRequestDto.getPriceRequest().getCustomerId();
         CalculationResponse calculationResponse = null;
         int initialValue = 0;
 
-        if (priceRequestDto.getCartItems().size() <= initialValue) {
+        if (priceRequestDto.getPriceRequest().getCartItems().size() <= initialValue) {
             throw new Exception("cart item has empty values");
         }
 
-        for (int i = 0; i < priceRequestDto.getCartItems().size(); i++) {
-            if (penguin.equalsIgnoreCase(priceRequestDto.getCartItems().get(i).getProductName())) {
+        for (int i = 0; i < priceRequestDto.getPriceRequest().getCartItems().size(); i++) {
+            if (penguin.equalsIgnoreCase(priceRequestDto.getPriceRequest().getCartItems().get(i).getProductName())) {
 
                 Penguin penguin = new Penguin();
-                int singleUnits = priceRequestDto.getCartItems().get(i).getNumberOfSingleUnits();
+                int singleUnits = priceRequestDto.getPriceRequest().getCartItems().get(i).getNumberOfSingleUnits();
 
                 penguin.setNumberOfSingleUnits(singleUnits);
                 penguin.setCustomerId(customerId);
@@ -62,19 +62,19 @@ public class PriceEngineServiceImpl implements PriceEngineService {
                 if (calculationResponse != null) {
                     double totalForBothProducts = calculationResponse.getTotalPrice() + penguinTotalPrice;
                     calculationResponse.setTotalPrice(totalForBothProducts);
-                    calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
+                    calculationResponse.setCustomerId(priceRequestDto.getPriceRequest().getCustomerId());
                 } else {
                     calculationResponse = new CalculationResponse();
                     calculationResponse.setTotalPrice(penguinTotalPrice);
-                    calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
+                    calculationResponse.setCustomerId(priceRequestDto.getPriceRequest().getCustomerId());
                 }
                 logger.info("Penguin calculation response  : {} ", calculationResponse);
             }
 
-            if (horseShoe.equalsIgnoreCase(priceRequestDto.getCartItems().get(i).getProductName())) {
+            if (horseShoe.equalsIgnoreCase(priceRequestDto.getPriceRequest().getCartItems().get(i).getProductName())) {
 
                 HorseShoe horseShoe = new HorseShoe();
-                int singleUnits = priceRequestDto.getCartItems().get(i).getNumberOfSingleUnits();
+                int singleUnits = priceRequestDto.getPriceRequest().getCartItems().get(i).getNumberOfSingleUnits();
 
                 horseShoe.setNumberOfSingleUnits(singleUnits);
                 horseShoe.setCustomerId(customerId);
@@ -84,11 +84,11 @@ public class PriceEngineServiceImpl implements PriceEngineService {
                 if (calculationResponse != null) {
                     double totalForBothProducts = calculationResponse.getTotalPrice() + horseShoeTotalPrice;
                     calculationResponse.setTotalPrice(totalForBothProducts);
-                    calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
+                    calculationResponse.setCustomerId(priceRequestDto.getPriceRequest().getCustomerId());
                 } else {
                     calculationResponse = new CalculationResponse();
                     calculationResponse.setTotalPrice(horseShoeTotalPrice);
-                    calculationResponse.setCustomerId(priceRequestDto.getCustomerId());
+                    calculationResponse.setCustomerId(priceRequestDto.getPriceRequest().getCustomerId());
                 }
                 logger.info("Horse shoe calculation response  : {} ", calculationResponse);
             }

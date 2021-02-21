@@ -20,12 +20,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.cors();
-        http.csrf().disable().exceptionHandling()
-                .authenticationEntryPoint(
-                        (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                //.and().logout().logoutUrl("/oauth/logout").logoutSuccessHandler(customLogoutSuccessHandler)
-                .and().authorizeRequests().antMatchers("/**").authenticated().and()
-                .httpBasic();
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
     }
 
     @Bean

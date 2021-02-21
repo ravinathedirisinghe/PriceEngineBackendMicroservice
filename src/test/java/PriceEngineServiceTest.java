@@ -54,7 +54,7 @@ public class PriceEngineServiceTest {
     @Test
     public void testPriceEngineSServiceHs() throws Exception {
         PriceRequestDto priceRequestDto = new PriceRequestDto();
-        priceRequestDto.setCustomerId("99x-121212");
+        priceRequestDto.getPriceRequest().setCustomerId("99x-121212");
 
         HorseShoe horseShoe = new HorseShoe();
         horseShoe.setCustomerId("99x-121212");
@@ -68,7 +68,7 @@ public class PriceEngineServiceTest {
     @Test
     public void testPriceEngineSServicePn() throws Exception {
         PriceRequestDto priceRequestDto = new PriceRequestDto();
-        priceRequestDto.setCustomerId("99x-121212");
+        priceRequestDto.getPriceRequest().setCustomerId("99x-121212");
 
         Penguin penguin = new Penguin();
         penguin.setCustomerId("99x-121212");
@@ -83,7 +83,7 @@ public class PriceEngineServiceTest {
     public void testPriceEngineSServicePnHsIntegrated() throws Exception {
 
         PriceRequestDto priceRequestDto = new PriceRequestDto();
-        priceRequestDto.setCustomerId("99x-121212");
+        priceRequestDto.getPriceRequest().setCustomerId("99x-121212");
 
         Penguin penguin = new Penguin();
         penguin.setCustomerId("99x-121212");

@@ -13,20 +13,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PriceRequestDto {
 
-    @JsonProperty("cartItems")
-    @NotNull(message = "cart items cannot be empty")
-    private List<CartItems> cartItems;
-
-    @JsonProperty("customerId")
-    @NotNull(message = "customer id cannot be empty")
-    private String customerId;
-
-    @Override
-    public String toString() {
-        return "PriceRequestDto{" +
-                "cartItems=" + cartItems +
-                ", customerId='" + customerId + '\'' +
-                '}';
-    }
+    @JsonProperty("priceRequest")
+    private PriceRequest priceRequest;
 
 }
