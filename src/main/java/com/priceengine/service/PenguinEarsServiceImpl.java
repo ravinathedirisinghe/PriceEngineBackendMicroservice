@@ -21,7 +21,7 @@ public class PenguinEarsServiceImpl implements PenguinEarsService {
 
         double numberOfSingleUnits = penguin.getNumberOfSingleUnits();
 
-        if (numberOfSingleUnits % Constants.CARTON_SIZE_PENGUIN == 0 && numberOfSingleUnits / Constants.CARTON_SIZE_PENGUIN > Constants.CARTON_SIZE_PENGUIN) {
+        if (numberOfSingleUnits % Constants.CARTON_SIZE_PENGUIN == 0 && numberOfSingleUnits / Constants.CARTON_SIZE_PENGUIN < Constants.DISCOUNT_ELIGIBILITY_COUNT) {
             totalPrice = Constants.CARTON_PRICE_PENGUIN * (numberOfSingleUnits / Constants.CARTON_SIZE_PENGUIN);
 
             calculationResponse.setTotalPrice(totalPrice);
