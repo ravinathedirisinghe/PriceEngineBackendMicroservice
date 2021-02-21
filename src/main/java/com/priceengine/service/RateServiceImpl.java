@@ -6,10 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class RateServiceImpl implements RateService {
@@ -43,7 +40,8 @@ public class RateServiceImpl implements RateService {
         horseShoeValueMap.put(10, 1650.0);
         horseShoeValueMap.put(15, 2227.5);
         horseShoeValueMap.put(20, 2970.0);
-        pricesHorseShoe.setUnitPrices(horseShoeValueMap);
+
+        pricesHorseShoe.setUnitPrices(sortByKey(horseShoeValueMap));
         priceItemHorseShoe.setPriceValue(pricesHorseShoe);
 
         PriceItems priceItemPenguin = new PriceItems();
@@ -60,7 +58,8 @@ public class RateServiceImpl implements RateService {
         penguinValueMap.put(40, 350.0);
         penguinValueMap.put(60, 472.5);
         penguinValueMap.put(80, 630.0);
-        pricesPenguin.setUnitPrices(penguinValueMap);
+
+        pricesPenguin.setUnitPrices(sortByKey(penguinValueMap));
         priceItemPenguin.setPriceValue(pricesPenguin);
 
 
@@ -99,6 +98,14 @@ public class RateServiceImpl implements RateService {
         rateResponse.setCartItems(itemValuesList);
 
         return rateResponse;
+    }
+
+    private static Map<Integer, Double> sortByKey(Map<Integer, Double> map) {
+        List<Map.Entry<Integer, Double>> list = new ArrayList<>(map.entrySet());
+        list.sort(Comparator.comparingInt(Map.Entry::getKey));
+        Map<Integer, Double> sortedMap = new LinkedHashMap<>();
+        list.forEach(e -> sortedMap.put(e.getKey(), e.getValue()));
+        return sortedMap;
     }
 
 }
