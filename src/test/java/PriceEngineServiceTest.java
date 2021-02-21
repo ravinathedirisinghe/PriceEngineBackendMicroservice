@@ -1,4 +1,3 @@
-import com.priceengine.dto.request.CartItems;
 import com.priceengine.dto.request.PriceRequestDto;
 import com.priceengine.dto.response.CalculationResponse;
 import com.priceengine.entity.HorseShoe;
@@ -8,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
@@ -54,7 +52,6 @@ public class PriceEngineServiceTest {
 
     @Autowired
     private PriceEngineService priceEngineService;
-
 
 
     @Test
