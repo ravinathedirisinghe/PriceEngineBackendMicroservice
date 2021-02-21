@@ -43,7 +43,6 @@ public class PriceEngineController {
 
     }
 
-
     @GetMapping(value = "/price-list", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPriceList() {
         try {
