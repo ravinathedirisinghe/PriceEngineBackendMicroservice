@@ -26,7 +26,7 @@ public class RateServiceImpl implements RateService {
         PriceItems priceItemHorseShoe = new PriceItems();
         priceItemHorseShoe.setProductName(horseShoe);
         Prices pricesHorseShoe = new Prices();
-
+        //TODO Load values to DB
         Map<Integer, Double> horseShoeValueMap = new HashMap<>();
         horseShoeValueMap.put(1, 214.5);
         horseShoeValueMap.put(2, 429.0);
@@ -48,6 +48,7 @@ public class RateServiceImpl implements RateService {
         priceItemPenguin.setProductName(penguin);
         Prices pricesPenguin = new Prices();
 
+        //TODO Load values to DB
         Map<Integer, Double> penguinValueMap = new HashMap<>();
         penguinValueMap.put(1, 11.375);
         penguinValueMap.put(2, 22.75);

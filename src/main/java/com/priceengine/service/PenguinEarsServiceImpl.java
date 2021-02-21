@@ -48,7 +48,7 @@ public class PenguinEarsServiceImpl implements PenguinEarsService {
 
         calculationResponse.setTotalPrice(totalPrice);
         calculationResponse.setCustomerId(customerId);
-
+        //TODO Save values to DB
         return calculationResponse;
     }
 

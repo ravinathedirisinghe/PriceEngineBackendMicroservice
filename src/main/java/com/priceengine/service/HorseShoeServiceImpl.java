@@ -47,7 +47,7 @@ public class HorseShoeServiceImpl implements HorseShoeService {
 
         calculationResponse.setTotalPrice(totalPrice);
         calculationResponse.setCustomerId(customerId);
-
+        //TODO Load values to DB
         return calculationResponse;
 
     }

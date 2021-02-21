@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
 
-
+@Transactional
 @Service
 public class PriceEngineServiceImpl implements PriceEngineService {
 
@@ -92,7 +93,7 @@ public class PriceEngineServiceImpl implements PriceEngineService {
                 logger.info("Horse shoe calculation response  : {} ", calculationResponse);
             }
         }
-
+        //TODO Save values to DB
         return calculationResponse;
     }
 
