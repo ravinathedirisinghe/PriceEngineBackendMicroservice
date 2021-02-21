@@ -20,6 +20,14 @@ public class HorseShoeServiceImpl implements HorseShoeService {
         double totalPrice = 0.0;
         double numberOfSingleUnits = (double) horseShoe.getNumberOfSingleUnits();
 
+        if (numberOfSingleUnits % Constants.CARTON_SIZE_HORSE_SHOE == 0 && (numberOfSingleUnits / Constants.CARTON_SIZE_HORSE_SHOE) > Constants.CARTON_SIZE_HORSE_SHOE) {
+            totalPrice = Constants.CARTON_PRICE_HORSE_SHOE * (numberOfSingleUnits / Constants.CARTON_SIZE_HORSE_SHOE);
+
+            calculationResponse.setTotalPrice(totalPrice);
+            calculationResponse.setCustomerId(customerId);
+            return calculationResponse;
+        }
+
         if (numberOfSingleUnits > Constants.CARTON_SIZE_HORSE_SHOE) {
 
             double singleItems = numberOfSingleUnits % Constants.CARTON_SIZE_HORSE_SHOE;
