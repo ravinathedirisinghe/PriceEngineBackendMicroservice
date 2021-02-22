@@ -25,44 +25,41 @@ public class RateServiceImpl implements RateService {
 
         PriceItems priceItemHorseShoe = new PriceItems();
         priceItemHorseShoe.setProductName(horseShoe);
-        Prices pricesHorseShoe = new Prices();
-        //TODO Load values to DB
-        Map<Integer, Double> horseShoeValueMap = new HashMap<>();
-        horseShoeValueMap.put(1, 214.5);
-        horseShoeValueMap.put(2, 429.0);
-        horseShoeValueMap.put(3, 643.5);
-        horseShoeValueMap.put(4, 858.0);
-        horseShoeValueMap.put(5, 825.0);
-        horseShoeValueMap.put(6, 1039.5);
-        horseShoeValueMap.put(7, 1254.0);
-        horseShoeValueMap.put(8, 1468.5);
-        horseShoeValueMap.put(9, 1683.0);
-        horseShoeValueMap.put(10, 1650.0);
-        horseShoeValueMap.put(15, 2227.5);
-        horseShoeValueMap.put(20, 2970.0);
 
-        pricesHorseShoe.setUnitPrices(sortByKey(horseShoeValueMap));
-        priceItemHorseShoe.setPriceValue(pricesHorseShoe);
+        List<Item> itemHs = new ArrayList<>();
+
+        //TODO Load values from DB
+        Item it1Hs = new Item();
+        it1Hs.setNumberOfUnits(1);
+        it1Hs.setPriceValue(214.5);
+
+        Item it2Hs = new Item();
+        it2Hs.setNumberOfUnits(2);
+        it2Hs.setPriceValue(429.0);
+
+        itemHs.add(it1Hs);
+        itemHs.add(it2Hs);
 
         PriceItems priceItemPenguin = new PriceItems();
         priceItemPenguin.setProductName(penguin);
-        Prices pricesPenguin = new Prices();
 
-        //TODO Load values to DB
-        Map<Integer, Double> penguinValueMap = new HashMap<>();
-        penguinValueMap.put(1, 11.375);
-        penguinValueMap.put(2, 22.75);
-        penguinValueMap.put(3, 34.125);
-        penguinValueMap.put(4, 45.5);
-        penguinValueMap.put(5, 56.875);
-        penguinValueMap.put(20, 227.5);
-        penguinValueMap.put(40, 350.0);
-        penguinValueMap.put(60, 472.5);
-        penguinValueMap.put(80, 630.0);
+        List<Item> itemPn = new ArrayList<>();
+        //TODO Load values from DB
+        Item it1Pn = new Item();
+        it1Pn.setNumberOfUnits(1);
+        it1Pn.setPriceValue(11.375);
 
-        pricesPenguin.setUnitPrices(sortByKey(penguinValueMap));
-        priceItemPenguin.setPriceValue(pricesPenguin);
+        Item it2Pn = new Item();
+        it2Pn.setNumberOfUnits(2);
+        it2Pn.setPriceValue(22.75);
 
+        itemPn.add(it1Pn);
+        itemPn.add(it2Pn);
+
+        //TODO Load values from DB
+
+        priceItemHorseShoe.setItems(itemHs);
+        priceItemPenguin.setItems(itemPn);
 
         List<PriceItems> priceItems = new ArrayList<>();
         priceItems.add(priceItemHorseShoe);
@@ -99,14 +96,6 @@ public class RateServiceImpl implements RateService {
         rateResponse.setCartItems(itemValuesList);
 
         return rateResponse;
-    }
-
-    private static Map<Integer, Double> sortByKey(Map<Integer, Double> map) {
-        List<Map.Entry<Integer, Double>> list = new ArrayList<>(map.entrySet());
-        list.sort(Comparator.comparingInt(Map.Entry::getKey));
-        Map<Integer, Double> sortedMap = new LinkedHashMap<>();
-        list.forEach(e -> sortedMap.put(e.getKey(), e.getValue()));
-        return sortedMap;
     }
 
 }

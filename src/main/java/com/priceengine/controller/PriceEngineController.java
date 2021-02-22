@@ -54,7 +54,7 @@ public class PriceEngineController {
         }
     }
 
-    @GetMapping(value = "/getItemRates", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/get-item-rates", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getItemRates() {
         try {
             RateResponse rateResponse = rateService.generateRateResponse();
